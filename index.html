@@ -734,6 +734,86 @@
     .circuit-traces path, .circuit-nodes { animation: none; }
   }
 
+
+  /* Refined, Apple-inspired palette: calm neutrals with a few purposeful accents */
+  :root {
+    --bg: #f5f5f7;
+    --bg-blueprint: #f0f2f5;
+    --surface: rgba(255,255,255,.82);
+    --surface-solid: #ffffff;
+    --line: #d2d2d7;
+    --text: #1d1d1f;
+    --muted: #6e6e73;
+    --neon: #007aff;
+    --neon-soft: rgba(0,122,255,.10);
+    --cyan: #007aff;
+    --cyan-soft: rgba(0,122,255,.08);
+    --lime: #34c759;
+    --wire: #af52de;
+    color-scheme: light;
+  }
+  body::before { background: rgba(245,245,247,.78); }
+  header.top { background: rgba(250,250,252,.78); border-bottom-color: rgba(60,60,67,.16); }
+  body.blueprint {
+    background-color: var(--bg-blueprint);
+    background-image:
+      linear-gradient(rgba(0,122,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,122,255,.035) 1px, transparent 1px);
+  }
+  .b::before { background-color: rgba(0,122,255,.035); }
+  .b::after { color: #fff; }
+  .brand i { background: #1d1d1f; color: #fff; box-shadow: none; border-radius: 9px; }
+  .avail small::before, .pill .b-c::before { background: var(--lime); box-shadow: 0 0 8px rgba(52,199,89,.35); }
+  .giant { color: rgba(0,122,255,.025); filter: none; }
+  .name { color: #fff; box-shadow: 0 8px 24px rgba(0,122,255,.18); }
+  .lead, .about-text p, .card .desc { color: #515154; }
+  .lead strong, .about-text strong { color: #1d1d1f; }
+  .btn.ghost:hover, .btn.solid:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+  .btn.solid { background: #fff; color: var(--text); border-color: var(--line); }
+  .btn.neon { background: #007aff; color: #fff; box-shadow: 0 4px 14px rgba(0,122,255,.22); }
+  .btn.neon:hover { box-shadow: 0 6px 20px rgba(0,122,255,.28); }
+  .photo-wrap .frame { border-color: #007aff; box-shadow: 0 8px 24px rgba(0,122,255,.16); }
+  .photo::before { background: linear-gradient(to bottom, rgba(0,122,255,.28), rgba(175,82,222,.18) 58%, rgba(255,159,10,.12)); }
+  .stat strong, .kicker .b-c, .metric strong, .layer-panel small { color: #007aff; text-shadow: none; }
+  .quote .b-c { border-left-color: #af52de; background: rgba(175,82,222,.07); box-shadow: -6px 0 20px -12px rgba(175,82,222,.5); }
+  .card.featured > .b-c { border-color: rgba(0,122,255,.22); box-shadow: 0 8px 28px rgba(0,0,0,.045); }
+  .tag { color: #007aff; background: rgba(0,122,255,.07); border-color: rgba(0,122,255,.16); }
+  .tag.c { color: #af52de; background: rgba(175,82,222,.07); border-color: rgba(175,82,222,.16); }
+  .layers button, .hud button { color: var(--text); background: rgba(255,255,255,.84); border-color: var(--line); }
+  .layers button[aria-selected="true"], .filters button[aria-pressed="true"], .hud button.on { background: #007aff; color: #fff; border-color: #007aff; box-shadow: none; }
+  .chips li { background: #fff; border-color: var(--line); color: #515154; }
+  .sys:hover > .b-c { border-color: rgba(0,122,255,.25); box-shadow: 0 8px 24px rgba(0,0,0,.055); }
+  .hud { background: rgba(250,250,252,.82); border-color: rgba(60,60,67,.16); color: var(--text); box-shadow: 0 8px 28px rgba(0,0,0,.10); backdrop-filter: blur(22px); }
+  .bar { background: #d2d2d7; }
+  .bar i { background: #007aff; box-shadow: none; }
+  .log p, .snip { color: #1d1d1f; background: rgba(250,250,252,.9); border-color: #d2d2d7; box-shadow: 0 4px 16px rgba(0,0,0,.08); backdrop-filter: blur(12px); }
+  .log p em { color: #515154; }
+  .snip { border-left-color: var(--sc); }
+  .sel { box-shadow: 0 2px 10px color-mix(in srgb, var(--sc), transparent 68%); }
+  .agent span { color: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.16); }
+  .ico { color: #007aff; filter: none; }
+  .flash { background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.96), rgba(0,122,255,.20) 35%, transparent 70%); }
+  .flash.go::after { box-shadow: 0 0 24px 6px rgba(0,122,255,.38); }
+  .done { background: rgba(245,245,247,.72); backdrop-filter: blur(24px); }
+  .done-card { color: #1d1d1f; background: rgba(250,250,252,.94); border-color: rgba(0,122,255,.28); box-shadow: 0 20px 70px rgba(0,0,0,.18); backdrop-filter: blur(24px); }
+  .terminal-head { background: #f0f0f2; border-bottom-color: #d2d2d7; color: #6e6e73; }
+  .terminal-lights i { background: #ff5f57; }
+  .terminal-lights i:nth-child(2) { background: #febc2e; }
+  .terminal-lights i:nth-child(3) { background: #28c840; }
+  .terminal-title, .terminal-link { color: #1d1d1f; }
+  .terminal-status, .terminal-prompt, .terminal-arrow { color: #007aff; }
+  .terminal-instruction, #doneClose { color: #6e6e73; }
+  .terminal-link { border-color: #d2d2d7; }
+  .terminal-link:hover { border-color: #007aff; background: rgba(0,122,255,.06); box-shadow: 0 4px 14px rgba(0,122,255,.10); }
+  #doneClose:hover { color: #1d1d1f; }
+  .circuit-overlay { color: #007aff; opacity: .12; }
+  .circuit-traces { filter: drop-shadow(0 0 2px rgba(0,122,255,.28)); }
+  .circuit-traces path:nth-child(3n) { stroke: #af52de; }
+  .circuit-traces path:nth-child(4n) { stroke: #34c759; }
+  .circuit-traces path:nth-child(5n) { stroke: #ff9f0a; }
+  .circuit-nodes { fill: #ff9f0a; filter: drop-shadow(0 0 4px rgba(255,159,10,.34)); }
+  @media (prefers-reduced-motion: reduce) { .circuit-overlay { opacity: .08; } }
+
 </style>
 </head>
 <body class="locked">
@@ -1228,7 +1308,7 @@
 
   // ---------- Agentes ----------
   const names = ['planejador', 'código', 'design', 'revisor', 'pesquisa', 'testes', 'memória', 'roteador', 'deploy', 'texto', 'visão', 'dados', 'ops', 'layout', 'estilo', 'grid', 'motion', 'qa', 'mcp', 'infra'];
-  const colors = ['#00cfe8', '#00a7c2', '#66e8f3', '#159eb1', '#78eaf3', '#a4f1f5', '#31c8d3', '#294b52'];
+  const colors = ['#007aff', '#af52de', '#ff9f0a', '#34c759', '#ff375f', '#5e5ce6', '#00a7a0', '#ff6b35'];
   const layer = $('agents');
   const agents = [];
   tick();
@@ -1401,7 +1481,7 @@
     `<svg viewBox="0 0 24 24" ${SW}><path d="M5 15c-1.5 1.3-2 5-2 5s3.7-.5 5-2M9 15l-3-3c1-4 4-8 13-9-1 9-5 12-9 13z"/><circle cx="15" cy="9" r="1.5"/></svg>`
   ];
   const FONTS = ['Orbitron', 'Press Start 2P', 'Playfair Display', 'Bungee', 'VT323', 'Monoton', 'Space Mono', 'Caveat Brush', 'Anton'];
-  const ACCENTS = ['#00cfe8', '#00a7c2', '#66e8f3', '#159eb1', '#78eaf3', '#a4f1f5'];
+  const ACCENTS = ['#007aff', '#af52de', '#ff9f0a', '#34c759', '#ff375f', '#5e5ce6'];
   const TEXT_SEL = '.hello, .name, .h2, .core h3, .sys h3, .card h3, .stat strong, .metric strong, .kicker .b-c, .pill .b-c';
   let iconCount = 0;
 
