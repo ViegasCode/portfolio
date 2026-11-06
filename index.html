@@ -216,10 +216,10 @@
 
   /* ---------- Hero ---------- */
   .hero { padding: 2.5rem 0 4rem; }
-  @media all { .giant { white-space: nowrap; } }
+  .giant span { display: block; }
   .giant {
-    font-family: var(--display); text-transform: uppercase;
-    font-size: clamp(4.4rem, 17.2vw, 16rem); line-height: .84; letter-spacing: .005em; text-align: center;
+    font-family: var(--display); text-transform: uppercase; white-space: normal;
+    font-size: clamp(4rem, 14vw, 11rem); line-height: .84; letter-spacing: .005em; text-align: center;
     color: rgba(255,31,61,.05);
     -webkit-text-stroke: 2px var(--neon);
     filter: drop-shadow(0 0 10px rgba(255,31,61,.7)) drop-shadow(0 0 28px rgba(255,31,61,.35));
@@ -238,7 +238,7 @@
     border: 1px solid var(--line); background: var(--surface-solid); padding: .6rem .85rem; border-radius: 3px;
   }
   .pill .b-c::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--neon); box-shadow: 0 0 8px var(--neon); }
-  .lead { margin-top: 1.5rem; max-width: 40ch; font-size: 1.08rem; color: #d6d0ea; }
+  .lead { margin-top: 1.5rem; max-width: 40ch; font-size: 1.15rem; color: #d6d0ea; }
   .lead strong { color: #fff; font-weight: 800; }
   .actions { display: flex; flex-direction: column; align-items: flex-start; gap: .8rem; margin-top: 1.8rem; }
   .btn {
@@ -651,13 +651,13 @@
 <main>
   <section class="hero" id="inicio">
     <div class="wrap">
-      <div class="b" data-label="h1 · display" data-scr><h1 class="b-c giant">Portfolio</h1></div>
+      <div class="b" data-label="h1 · display"><h1 class="b-c giant"><span>Douglas</span><span>Guerreiro</span></h1></div>
 
       <div class="hero-grid">
         <div>
           <div class="b" data-label="saudação" style="display:inline-block"><p class="b-c hello" data-alt="Olá, eu sou|Prazer, eu sou|E aí, eu sou">Olá, eu sou</p></div><br>
-          <div class="b" data-label="nome" data-scr style="display:inline-block"><p class="b-c name">Douglas Guerreiro.</p></div><br>
-          <div class="b pill" data-label="função" style="display:inline-block"><p class="b-c" data-alt="Agentic Builder &amp; arquiteto de IA|Orquestrador de agentes de IA|Engenheiro de sistemas autônomos">Agentic Builder &amp; arquiteto de IA</p></div>
+          <div class="b" data-label="função" style="display:inline-block"><p class="b-c name">Agentic Builder.</p></div><br>
+          <div class="b pill" data-label="especialidade" style="display:inline-block"><p class="b-c" data-alt="Orquestrador multiagente|Engenheiro de sistemas autônomos|Criador de agentes inteligentes">Arquiteto de IA</p></div>
           <div class="b" data-label="apresentação"><p class="b-c lead">Construo <strong>ecossistemas de agentes de IA</strong> que trabalham 24/7: <strong>enxames multiagente</strong>, automações de ponta a ponta e ferramentas próprias, do primeiro prompt ao deploy.</p></div>
           <div class="b" data-label="ações"><div class="b-c actions">
             <a class="btn ghost" href="#contato">Iniciar projeto →</a>
