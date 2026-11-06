@@ -261,11 +261,22 @@
   }
   .photo img {
     position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%;
-    filter: grayscale(.28) sepia(.62) hue-rotate(305deg) saturate(1.75) contrast(1.08);
+    filter: grayscale(.42) contrast(1.08);
   }
   .photo::before {
-    content: ""; position: absolute; inset: 0; z-index: 1; background: rgba(255,31,61,.34);
-    mix-blend-mode: color; pointer-events: none;
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to bottom, rgba(255,31,61,.48) 0%, rgba(255,31,61,.4) 58%, rgba(255,31,61,.3) 100%);
+    mix-blend-mode: color; clip-path: inset(0 0 100% 0); pointer-events: none;
+  }
+  .b.fill > .b-c.photo-wrap .photo::before {
+    animation: photoFilterSweep 1.35s cubic-bezier(.16,.84,.24,1) .12s forwards;
+  }
+  @keyframes photoFilterSweep {
+    from { clip-path: inset(0 0 100% 0); }
+    to { clip-path: inset(0 0 0 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .b.fill > .b-c.photo-wrap .photo::before { animation: none; clip-path: inset(0); }
   }
   .photo::after { z-index: 2; }
 
@@ -654,10 +665,10 @@
           </div></div>
         </div>
 
-        <div class="b" data-label="foto 4:5"><div class="b-c photo-wrap">
+        <div class="b" data-label="foto + filtro"><div class="b-c photo-wrap">
           <div class="frame"></div>
           <div class="photo">
-            <img src="douglas.jpg" alt="Douglas Guerreiro usando boné e fones de ouvido" loading="eager">
+            <img src="douglas.jpg" alt="Douglas Guerreiro sorrindo em um ambiente interno" loading="eager">
           </div>
         </div></div>
 
