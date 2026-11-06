@@ -612,11 +612,154 @@
     .b > .b-c { opacity: 1; transform: none; transition: none; }
     #agents, #particles, .hud, #boot, .log, #fx, .flash, .done { display: none; }
   }
+  
+  /* Tema claro: branco, ciano e circuitos LED */
+  :root, :root:not([data-theme="light"]), :root[data-theme="dark"] {
+    --bg: #f7fbfc;
+    --bg-blueprint: #eff9fb;
+    --surface: rgba(255,255,255,.88);
+    --surface-solid: #ffffff;
+    --line: #cfe3e8;
+    --text: #18333b;
+    --muted: #5d747b;
+    --neon: #00c4dc;
+    --neon-soft: rgba(0,196,220,.13);
+    --cyan: #008da5;
+    --cyan-soft: rgba(0,174,199,.10);
+    --lime: #00aebe;
+    --wire: #00c4dc;
+    color-scheme: light;
+  }
+  html, body { background: var(--bg); color: var(--text); }
+  body::before { background: rgba(247,251,252,.82); }
+  body.blueprint {
+    background-color: var(--bg-blueprint);
+    background-image:
+      linear-gradient(rgba(0,174,199,.075) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,174,199,.075) 1px, transparent 1px);
+  }
+  header.top { background: rgba(249,253,254,.86); border-bottom-color: rgba(28,72,83,.16); }
+  .brand i { background: var(--neon); color: #06313a; box-shadow: 0 0 16px rgba(0,196,220,.45); }
+  .avail a, .btn.ghost { color: var(--cyan); }
+  .b::before {
+    background:
+      linear-gradient(#fff,#fff) 0 0 / 7px 7px no-repeat,
+      linear-gradient(#fff,#fff) 100% 0 / 7px 7px no-repeat,
+      linear-gradient(#fff,#fff) 0 100% / 7px 7px no-repeat,
+      linear-gradient(#fff,#fff) 100% 100% / 7px 7px no-repeat,
+      rgba(0,174,199,.06);
+  }
+  .b::after { color: #06313a; }
+  .redline, .redline::before, .redline::after { background: var(--neon); }
+  .redline { --sc: var(--neon); }
+  .ico { color: var(--cyan); filter: drop-shadow(0 0 6px rgba(0,174,199,.35)); }
+  .log p { color: #d7eef2; background: rgba(14,38,45,.88); border-color: #47737d; }
+  .log p em { color: #fff; }
+  .agent span { color: #08343c; }
+  .menu-btn i { background: var(--text); }
+  .mnav { background: rgba(247,251,252,.97); }
+  .mnav a { color: var(--text); }
+  .mnav a small, .mnav-foot .dot { color: var(--cyan); }
+  .mnav-foot .dot { background: var(--neon); box-shadow: 0 0 8px rgba(0,196,220,.55); }
+  .mnav a:active { color: var(--cyan); }
+  .hero-grid { color: var(--text); }
+  .giant { color: rgba(0,196,220,.035); -webkit-text-stroke-color: var(--neon); filter: drop-shadow(0 0 9px rgba(0,174,199,.42)) drop-shadow(0 0 24px rgba(0,174,199,.2)); }
+  .name { color: #07343c; box-shadow: 0 0 24px rgba(0,174,199,.3), 0 0 60px rgba(0,174,199,.12); }
+  .pill .b-c { color: var(--text); }
+  .pill .b-c::before { background: var(--neon); box-shadow: 0 0 8px rgba(0,196,220,.55); }
+  .lead, .about-text p, .card .desc { color: #38555e; }
+  .lead strong, .about-text strong { color: #12343d; }
+  .btn.ghost:hover { border-color: var(--cyan); box-shadow: 0 0 16px rgba(0,174,199,.25); }
+  .btn.solid { background: #fff; color: var(--text); border-color: var(--line); }
+  .btn.solid:hover { border-color: var(--neon); box-shadow: 0 0 18px rgba(0,174,199,.22); }
+  .btn.neon { background: var(--neon); color: #07343c; box-shadow: 0 0 22px rgba(0,174,199,.34); }
+  .btn.neon:hover { box-shadow: 0 0 34px rgba(0,174,199,.5); }
+  .photo-wrap .frame { border-color: var(--neon); box-shadow: 0 0 18px rgba(0,174,199,.42); }
+  .photo img { filter: grayscale(.36) contrast(1.06); }
+  .photo::before {
+    background: linear-gradient(to bottom, rgba(0,196,220,.48) 0%, rgba(0,196,220,.39) 58%, rgba(0,196,220,.3) 100%);
+  }
+  .stat strong, .kicker .b-c, .metric strong, .layer-panel small { color: var(--cyan); }
+  .stat strong { text-shadow: 0 0 12px rgba(0,174,199,.3); }
+  .quote .b-c { border-left-color: var(--cyan); background: rgba(0,174,199,.08); box-shadow: -6px 0 22px -10px var(--cyan); }
+  .card.featured > .b-c { border-color: rgba(0,174,199,.35); box-shadow: 0 0 40px -12px rgba(0,174,199,.2); }
+  .tag { color: var(--cyan); background: rgba(0,174,199,.08); border-color: rgba(0,174,199,.26); }
+  .tag.c { color: #007e94; background: rgba(0,174,199,.08); border-color: rgba(0,174,199,.25); }
+  .layers button { color: var(--text); background: #f5fafb; border-color: var(--line); }
+  .layers button:hover, .hud button:hover { border-color: var(--cyan); }
+  .layers button[aria-selected="true"], .filters button[aria-pressed="true"] { background: var(--neon); color: #07343c; border-color: var(--neon); box-shadow: 0 0 16px rgba(0,174,199,.28); }
+  .layer-panel { color: var(--text); }
+  .chips li { background: #f2f9fa; border-color: var(--line); color: #35545d; }
+  .filters button { color: var(--text); }
+  .filters button:hover { border-color: var(--line); }
+  .sys:hover > .b-c { border-color: rgba(0,174,199,.4); box-shadow: 0 0 30px -10px rgba(0,174,199,.25); }
+  .contact .h2 { color: var(--text); }
+  footer { color: var(--muted); }
+  .hud { background: rgba(255,255,255,.9); border-color: var(--line); color: var(--text); box-shadow: 0 10px 40px rgba(30,78,89,.15); }
+  .dots i { border-color: #fff; }
+  .bar { background: #d9e8eb; }
+  .bar i { background: var(--cyan); box-shadow: 0 0 8px rgba(0,174,199,.35); }
+  .hud button { color: var(--text); background: #f5fafb; border-color: var(--line); }
+  .hud button.on { background: var(--neon); color: #07343c; border-color: var(--neon); box-shadow: 0 0 12px rgba(0,174,199,.35); }
+  .hero .btn.ghost { border-color: rgba(0,174,199,.25); }
+  .snip { color: #dcf5f8; background: rgba(14,38,45,.96); border-color: #47737d; }
+  .flash { background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.92), rgba(0,196,220,.38) 35%, transparent 70%); }
+  .flash.go::after { box-shadow: 0 0 24px 6px rgba(0,196,220,.75); }
+  .done { background: #07171d; }
+  .done-card { color: #e8fbfe; background: rgba(7,22,27,.98); border-color: rgba(0,196,220,.68); box-shadow: 0 0 55px -12px rgba(0,196,220,.38), 0 30px 90px rgba(0,0,0,.6); }
+  .terminal-head { background: #10262d; border-bottom-color: #27444b; color: #a8ccd2; }
+  .terminal-lights i { background: #00c4dc; }
+  .terminal-lights i:nth-child(2) { background: #66e8f3; }
+  .terminal-lights i:nth-child(3) { background: #a4f1f5; }
+  .terminal-title, .terminal-link { color: #e8fbfe; }
+  .terminal-status, .terminal-prompt, .terminal-arrow { color: #00cfe8; }
+  .terminal-instruction { color: #a8ccd2; }
+  .terminal-link { border-color: #27444b; }
+  .terminal-link:hover { border-color: #00c4dc; background: rgba(0,196,220,.1); box-shadow: 0 0 20px rgba(0,196,220,.18); }
+  #doneClose { color: #a8ccd2; }
+  #doneClose:hover { color: #fff; }
+  .circuit-overlay {
+    position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+    color: #00cfe8; opacity: .27;
+  }
+  .circuit-overlay svg { width: 100%; height: 100%; max-width: none; }
+  .circuit-traces { fill: none; stroke: currentColor; stroke-width: 1.35; stroke-dasharray: 7 18; stroke-linecap: round; filter: drop-shadow(0 0 3px rgba(0,196,220,.45)); }
+  .circuit-traces path { animation: circuitFlow 9s linear infinite; }
+  .circuit-traces path:nth-child(2n) { animation-duration: 13s; animation-direction: reverse; }
+  .circuit-traces path:nth-child(3n) { animation-delay: -4s; }
+  .circuit-nodes { fill: currentColor; filter: drop-shadow(0 0 5px rgba(0,196,220,.7)); animation: circuitPulse 2s ease-in-out infinite alternate; transform-origin: center; }
+  @keyframes circuitFlow { to { stroke-dashoffset: -220; } }
+  @keyframes circuitPulse { from { opacity: .35; } to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .circuit-traces path, .circuit-nodes { animation: none; }
+  }
+
 </style>
 </head>
 <body class="locked">
 
 <canvas id="particles" aria-hidden="true"></canvas>
+<div class="circuit-overlay" aria-hidden="true">
+  <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+    <g class="circuit-traces">
+      <path d="M0 74h82v54h68v54h82v72h92"/>
+      <path d="M0 322h94v-64h76v-58h96v-64h68"/>
+      <path d="M0 598h86v-70h88v-62h94v-58h80"/>
+      <path d="M0 842h92v-58h108v-72h76"/>
+      <path d="M1440 92h-90v70h-76v62h-94v66h-82"/>
+      <path d="M1440 354h-110v-62h-80v-60h-96"/>
+      <path d="M1440 622h-86v-68h-96v-62h-94v-54h-68"/>
+      <path d="M1440 842h-94v-60h-102v-70h-78"/>
+      <path d="M210 0v48h82v52h72"/>
+      <path d="M1210 0v42h-82v58h-74"/>
+    </g>
+    <g class="circuit-nodes">
+      <circle cx="324" cy="326" r="3"/><circle cx="300" cy="598" r="3"/>
+      <circle cx="1098" cy="290" r="3"/><circle cx="1096" cy="438" r="3"/>
+      <circle cx="292" cy="100" r="3"/><circle cx="1128" cy="100" r="3"/>
+    </g>
+  </svg>
+</div>
 <div id="agents" aria-hidden="true"></div>
 <div id="boot" aria-hidden="true"><pre></pre></div>
 <div id="fx" aria-hidden="true"></div>
@@ -1085,7 +1228,7 @@
 
   // ---------- Agentes ----------
   const names = ['planejador', 'código', 'design', 'revisor', 'pesquisa', 'testes', 'memória', 'roteador', 'deploy', 'texto', 'visão', 'dados', 'ops', 'layout', 'estilo', 'grid', 'motion', 'qa', 'mcp', 'infra'];
-  const colors = ['#39ff14', '#92ff7a', '#c3ff7a', '#a9ff5e', '#69ff98', '#8eff5d', '#52ffac', '#efffef'];
+  const colors = ['#00cfe8', '#00a7c2', '#66e8f3', '#159eb1', '#78eaf3', '#a4f1f5', '#31c8d3', '#294b52'];
   const layer = $('agents');
   const agents = [];
   tick();
@@ -1258,7 +1401,7 @@
     `<svg viewBox="0 0 24 24" ${SW}><path d="M5 15c-1.5 1.3-2 5-2 5s3.7-.5 5-2M9 15l-3-3c1-4 4-8 13-9-1 9-5 12-9 13z"/><circle cx="15" cy="9" r="1.5"/></svg>`
   ];
   const FONTS = ['Orbitron', 'Press Start 2P', 'Playfair Display', 'Bungee', 'VT323', 'Monoton', 'Space Mono', 'Caveat Brush', 'Anton'];
-  const ACCENTS = ['#39ff14', '#22e06b', '#a9ff5e', '#69ff98', '#52ffac', '#8eff5d'];
+  const ACCENTS = ['#00cfe8', '#00a7c2', '#66e8f3', '#159eb1', '#78eaf3', '#a4f1f5'];
   const TEXT_SEL = '.hello, .name, .h2, .core h3, .sys h3, .card h3, .stat strong, .metric strong, .kicker .b-c, .pill .b-c';
   let iconCount = 0;
 
