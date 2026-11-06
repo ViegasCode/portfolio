@@ -814,6 +814,21 @@
   .circuit-nodes { fill: #ff9f0a; filter: drop-shadow(0 0 4px rgba(255,159,10,.34)); }
   @media (prefers-reduced-motion: reduce) { .circuit-overlay { opacity: .08; } }
 
+
+  /* Clean display type for the two-line name */
+  .giant {
+    font-family: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 800;
+    text-transform: none;
+    font-size: clamp(3.2rem, 11vw, 8.5rem);
+    line-height: 1.02;
+    letter-spacing: -.065em;
+    -webkit-text-stroke: 0;
+    color: #1d1d1f;
+    filter: none;
+  }
+  .giant span { display: block; }
+
 </style>
 </head>
 <body class="locked">
