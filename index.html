@@ -423,25 +423,61 @@
   .flash.go::after { content: ""; position: absolute; left: 0; right: 0; height: 2px; top: 0; background: #fff; box-shadow: 0 0 24px 6px rgba(255,31,61,.8); animation: scan .9s ease-in both; }
   @keyframes scan { from { top: 0; } to { top: 100%; } }
 
-  .done { position: fixed; inset: 0; z-index: 76; display: grid; place-items: center; padding: 1.5rem; background: rgba(6,4,5,.55); backdrop-filter: blur(4px); transition: opacity .5s ease; cursor: pointer; }
+  .done { position: fixed; inset: 0; z-index: 76; display: grid; place-items: center; padding: 1.25rem; background: #020203; opacity: 0; }
   .done[hidden] { display: none; }
-  .done.out { opacity: 0; }
-  .done-card {
-    width: min(420px, 100%); text-align: center; padding: 2.2rem 1.6rem 1.8rem;
-    background: rgba(14,10,11,.94); border: 1px solid rgba(34,224,107,.45); border-radius: 10px;
-    box-shadow: 0 0 60px -10px rgba(34,224,107,.5), 0 30px 80px rgba(0,0,0,.6);
-    animation: cardIn .6s cubic-bezier(.2,1.4,.4,1) both;
+  .done.glitch { opacity: 1; animation: terminalGlitch .82s steps(1, end) both; }
+  .done.glitch::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .42;
+    background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.16) 3px 4px, transparent 4px 7px);
+    animation: terminalStatic .08s steps(2, end) infinite;
   }
-  @keyframes cardIn { from { transform: scale(.7); opacity: 0; } to { transform: none; opacity: 1; } }
-  .done-check { width: 64px; height: 64px; margin: 0 auto; fill: none; stroke: var(--lime); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 10px rgba(34,224,107,.7)); }
-  .done-check circle { stroke-dasharray: 145; stroke-dashoffset: 145; animation: dash .6s .15s ease forwards; }
-  .done-check path { stroke-dasharray: 40; stroke-dashoffset: 40; animation: dash .4s .6s ease forwards; }
-  @keyframes dash { to { stroke-dashoffset: 0; } }
-  .done-title { font-family: var(--display); text-transform: uppercase; font-size: 2.6rem; line-height: 1; margin-top: 1rem; }
-  .done-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin-top: 1.4rem; }
-  .done-stats strong { display: block; font: 700 1.35rem/1.1 var(--mono); color: var(--neon); text-shadow: 0 0 10px rgba(255,31,61,.55); }
-  .done-stats span { font-size: .72rem; color: var(--muted); }
-  .done-foot { margin-top: 1.3rem; font: 700 .7rem/1 var(--mono); color: var(--lime); text-transform: uppercase; letter-spacing: .06em; }
+  .done.ready { opacity: 1; }
+  .done.out { opacity: 0; transition: opacity .45s ease; }
+  @keyframes terminalGlitch {
+    0% { clip-path: inset(48% 0 48% 0); opacity: .2; transform: translateX(0); }
+    8% { clip-path: inset(8% 0 78% 0); opacity: 1; transform: translateX(-9px); }
+    15% { clip-path: inset(68% 0 12% 0); opacity: .35; transform: translateX(12px); }
+    22% { clip-path: inset(0 0 0 0); opacity: 1; transform: translateX(-4px); }
+    30% { clip-path: inset(40% 0 40% 0); opacity: .15; transform: translateX(8px); }
+    38% { clip-path: inset(0 0 0 0); opacity: 1; transform: translateX(0); }
+    48% { clip-path: inset(0 0 0 0); opacity: .08; }
+    56%, 100% { clip-path: inset(0 0 0 0); opacity: 1; transform: none; }
+  }
+  @keyframes terminalStatic { to { transform: translateY(4px); } }
+  .done-card {
+    position: relative; width: min(620px, 100%); overflow: hidden; text-align: left;
+    background: rgba(7,8,10,.98); border: 1px solid rgba(255,31,61,.62); border-radius: 7px;
+    box-shadow: 0 0 55px -12px rgba(255,31,61,.48), 0 30px 90px rgba(0,0,0,.8);
+    animation: terminalIn .55s .08s ease both;
+  }
+  @keyframes terminalIn { from { transform: translateY(12px) scale(.985); opacity: 0; } to { transform: none; opacity: 1; } }
+  .terminal-head { display: flex; align-items: center; gap: .7rem; padding: .7rem .95rem; background: #111114; border-bottom: 1px solid #292329; color: var(--muted); font: 400 .68rem/1 var(--mono); }
+  .terminal-lights { display: flex; gap: 5px; }
+  .terminal-lights i { width: 8px; height: 8px; border-radius: 50%; background: #ff4058; }
+  .terminal-lights i:nth-child(2) { background: #f4b84a; }
+  .terminal-lights i:nth-child(3) { background: #2bdb79; }
+  .terminal-head span:nth-child(2) { flex: 1; }
+  #doneClose { padding: .1rem .35rem; color: var(--muted); background: none; border: 0; font: 400 1.2rem/1 var(--mono); cursor: pointer; }
+  #doneClose:hover { color: var(--text); }
+  .terminal-body { padding: 1.25rem clamp(1rem, 4vw, 1.8rem) 1.45rem; font: 400 .84rem/1.65 var(--mono); }
+  .terminal-status { color: var(--lime); animation: terminalReveal .3s .25s both; }
+  .terminal-title { margin: .65rem 0 .45rem; color: var(--text); font: 700 clamp(1.15rem, 4vw, 1.65rem)/1.25 var(--mono); letter-spacing: -.035em; animation: terminalReveal .3s .4s both; }
+  .terminal-prompt { color: var(--neon); }
+  .terminal-instruction { margin: 0 0 .9rem; color: var(--muted); animation: terminalReveal .3s .55s both; }
+  .terminal-link { display: flex; align-items: center; gap: .8rem; margin-top: .55rem; padding: .75rem .85rem; color: var(--text); text-decoration: none; border: 1px solid #30262a; border-radius: 4px; background: rgba(255,255,255,.025); transition: border-color .2s, box-shadow .2s, background .2s; }
+  .terminal-link:nth-of-type(1) { animation: terminalReveal .3s .7s both; }
+  .terminal-link:nth-of-type(2) { animation: terminalReveal .3s .84s both; }
+  .terminal-link:hover { border-color: var(--neon); background: rgba(255,31,61,.07); box-shadow: 0 0 20px rgba(255,31,61,.15); }
+  .terminal-link small { display: block; color: var(--muted); font-size: .6rem; letter-spacing: .08em; }
+  .terminal-link strong { font-weight: 700; }
+  .terminal-link > span:nth-child(2) { flex: 1; }
+  .terminal-arrow { color: var(--cyan); }
+  .terminal-footer { margin-top: 1rem; color: #71666b; font-size: .66rem; animation: terminalReveal .3s 1s both; }
+  @keyframes terminalReveal { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .done.glitch { animation: none; opacity: 1; }
+    .done.glitch::before, .done-card, .terminal-status, .terminal-title, .terminal-instruction, .terminal-link, .terminal-footer { animation: none; }
+  }
   #boot.gate { pointer-events: auto; cursor: pointer; }
   #boot .hint { color: var(--text); }
 
@@ -794,16 +830,25 @@
 </div>
 
 <div class="done" id="done" hidden>
-  <div class="done-card">
-    <svg class="done-check" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="m15 27 7 7 15-16"/></svg>
-    <p class="done-title" id="doneTitle">Site concluído</p>
-    <div class="done-stats">
-      <div><strong id="dLayers">0</strong><span>camadas</span></div>
-      <div><strong id="dAgents">0</strong><span>agentes</span></div>
-      <div><strong id="dTime">00:00</strong><span>de construção</span></div>
+  <section class="done-card terminal-card" role="dialog" aria-modal="true" aria-labelledby="terminalTitle">
+    <div class="terminal-head">
+      <span class="terminal-lights" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>DG // canal seguro</span>
+      <button type="button" id="doneClose" aria-label="Fechar terminal">×</button>
     </div>
-    <p class="done-foot">Pronto para deploy</p>
-  </div>
+    <div class="terminal-body">
+      <p class="terminal-status">[ OK ] sessão finalizada</p>
+      <h2 class="terminal-title" id="terminalTitle"><span class="terminal-prompt">&gt;</span> O próximo passo é uma conversa.</h2>
+      <p class="terminal-instruction">Escolha um canal e fale conosco:</p>
+      <a class="terminal-link" href="https://wa.me/5521986936680" target="_blank" rel="noopener">
+        <span class="terminal-prompt">$</span><span><small>WHATSAPP</small><strong>21 98693-6680</strong></span><span class="terminal-arrow">↗</span>
+      </a>
+      <a class="terminal-link" href="https://instagram.com/viegas.py" target="_blank" rel="noopener">
+        <span class="terminal-prompt">$</span><span><small>INSTAGRAM</small><strong>@viegas.py</strong></span><span class="terminal-arrow">↗</span>
+      </a>
+      <p class="terminal-footer">ESC para fechar // aguardando conexão...</p>
+    </div>
+  </section>
 </div>
 <div class="flash" id="flash" aria-hidden="true"></div>
 
@@ -868,27 +913,13 @@
   mnav.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !mnav.hidden) setMenu(false); });
 
-  // Ícones dos contatos. Para usar os ícones oficiais, cole aqui o SVG
-  // baixado das páginas de marca do Instagram e do LinkedIn.
-  const SOC_SW = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+  // Ícones de contato: envelope, glifo do Instagram e marca [in] do LinkedIn.
   const SOCIAL_ICONS = {
-    mail: `<svg ${SOC_SW}><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>`,
-    ig: `<svg ${SOC_SW}><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m21 15-5-5-9 10"/></svg>`,
-    in: `<svg ${SOC_SW}><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg>`
+    mail: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>`,
+    ig: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>`,
+    in: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.26 2.37 4.26 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM3.55 9H7.1v11.45H3.55zM22.22 0H1.77C.79 0 0 .78 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .78 23.2 0 22.22 0z"/></svg>`
   };
-
-  // Se existir a pasta "icones" ao lado deste arquivo com email.svg,
-  // instagram.svg e linkedin.svg, o site usa esses arquivos.
-  // Se não existir, usa os ícones genéricos acima.
-  const ICON_FILES = { mail: 'icones/email.svg', ig: 'icones/instagram.svg', in: 'icones/linkedin.svg' };
-  function setSocIcon(slot, key) {
-    const img = new Image();
-    img.alt = '';
-    img.onload = () => { slot.innerHTML = ''; slot.appendChild(img); };
-    img.onerror = () => { slot.innerHTML = SOCIAL_ICONS[key]; };
-    slot.innerHTML = SOCIAL_ICONS[key];
-    img.src = ICON_FILES[key];
-  }
+  function setSocIcon(slot, key) { slot.innerHTML = SOCIAL_ICONS[key]; }
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const body = document.body;
@@ -1476,6 +1507,7 @@
     body.classList.remove('locked');
     state.introDone = true;
     observe();
+    startTour();
   }
 
   // ---------- Final: contatos + conclusão ----------
@@ -1515,24 +1547,30 @@
     agents.forEach((a, i) => { const g = i / agents.length * Math.PI * 2 + .6; move(a, cx + Math.cos(g) * 14, cy + Math.sin(g) * 14, 380); });
     await sleep(420); if (me !== introGen) return;
 
-    // explosão + conclusão
-    const secs = Math.round((performance.now() - state.t0) / 1000);
+    // explosão, interferência e terminal de contato
     sfx.done(); burst(cx, cy);
     const fl = $('flash'); fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
     agents.forEach((a, i) => { const g = i / agents.length * Math.PI * 2; move(a, cx + Math.cos(g) * W(), cy + Math.sin(g) * H(), 1100); });
     $('hud').classList.add('finished');
     const done = $('done');
-    $('dLayers').textContent = blocks.length + SOC_STEPS;
-    $('dAgents').textContent = agents.length;
-    $('dTime').textContent = String(Math.floor(secs / 60)).padStart(2, '0') + ':' + String(secs % 60).padStart(2, '0');
     await sleep(650); if (me !== introGen) return;
-    done.hidden = false; done.classList.remove('out');
-    scramble($('doneTitle'));
-    setTimeout(() => { layer.style.opacity = 0; }, 1200);
-    const close = () => { done.classList.add('out'); setTimeout(() => { done.hidden = true; }, 500); };
-    done.onclick = close;
-    setTimeout(() => { if (me === introGen && !done.hidden) close(); }, 4500);
+    layer.style.opacity = 0;
+    done.hidden = false; done.classList.remove('out', 'ready', 'glitch');
+    void done.offsetWidth;
+    done.classList.add('glitch');
+    await sleep(820); if (me !== introGen) return;
+    done.classList.remove('glitch'); done.classList.add('ready');
   }
+
+  function closeTerminal() {
+    const done = $('done');
+    done.classList.add('out');
+    setTimeout(() => { done.hidden = true; done.classList.remove('out', 'ready', 'glitch'); }, 480);
+  }
+  $('doneClose').addEventListener('click', closeTerminal);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !$('done').hidden) closeTerminal();
+  });
 
   // Mais agentes entram conforme a página cresce
   const sectionsIO = new IntersectionObserver(es => es.forEach(e => {
@@ -1557,7 +1595,7 @@
     agents.length = 0; $('dots').innerHTML = '';
     state.finished = false; state.extra = 0;
     document.querySelectorAll('.soc-i').forEach(sl => { sl.innerHTML = ''; sl.classList.remove('on'); });
-    $('hud').classList.remove('finished'); $('done').hidden = true; bursts.length = 0;
+    $('hud').classList.remove('finished'); $('done').hidden = true; $('done').classList.remove('out', 'ready', 'glitch'); bursts.length = 0;
     updateHud();
     intro();
   }
@@ -1583,10 +1621,14 @@
     }
     requestAnimationFrame(tourStep);
   }
-  $('tourBtn').addEventListener('click', () => {
-    if (touring) { stopTour(); return; }
+  function startTour() {
+    if (touring) return;
     touring = true; last = 0; $('tourBtn').classList.add('on');
     requestAnimationFrame(tourStep);
+  }
+  $('tourBtn').addEventListener('click', () => {
+    if (touring) stopTour();
+    else startTour();
   });
   ['wheel', 'touchstart'].forEach(ev => addEventListener(ev, () => { if (touring) stopTour(); }, { passive: true }));
 
